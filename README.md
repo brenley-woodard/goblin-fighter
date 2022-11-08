@@ -1,27 +1,49 @@
-## The Golden Rule:
+![](./assets/wireframe.png)
 
-🦸 🦸‍♂️ `Stop starting and start finishing.` 🏁
+# Plan
 
-If you work on more than one feature at a time, you are guaranteed to multiply your bugs and your anxiety.
+## HTML
 
-## Making a plan
+-   section for elf stats
+    -   div for message with # of trolls defeated
+    -   div for elf HP
+    -   p with elf emoji alive/dead
+-   section for troll stats
+    -   input with label for new troll
+    -   add troll button
+    -   ul with li items of trolls
+        -   divs in li items for name, alive/dead emoji, and hp
+    -   clear dead trolls button
 
-1. **Make a drawing of your app. Simple "wireframes"**
-1. **Look at the drawing and name the HTML elements you'll need to realize your vision**
-1. **Look at the drawing and imagine using the app. What _state_ do you need to track?**
-1. **For each HTML element ask: Why do I need this? (i.e., "we need div to display the results in")**
-1. **Once we know _why_ we need each element, think about how to implement the "Why" as a "How" (i.e., `resultsEl.textContent = newResults`)**
-1. **Find all the 'events' (user clicks, form submit, on load etc) in your app. Ask one by one, "What happens when" for each of these events. Does any state change? Does any DOM update?**
-1. **Think about how to validate each of your features according to a Definition of Done. (Hint: console.log usually helps here.)**
-1. **Consider what features _depend_ on what other features. Use this dependency logic to figure out what order to complete tasks.**
+## JS
 
-Additional considerations:
+### State
 
--   Ask: which of your HTML elements need to be hard coded, and which need to be dynamically generated?
--   Consider your data model.
-    -   What kinds of objects (i.e., Dogs, Friends, Todos, etc) will you need?
-    -   What are the key/value pairs?
-    -   What arrays might you need?
-    -   What needs to live in a persistence layer?
--   Is there some state we need to initialize?
--   Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be reused?)
+    - array of troll objects (name, id, hp)
+    - # of defeated trolls
+    - elf HP
+    - currentID (to create new trolls with ID's)
+
+### Events
+
+    - troll is clickable
+        - event listener('click') that...
+            - possibly decrements troll  hp
+            - possibly decrements elf hp
+            - possibly increments defeated trolls
+            - updates the DOM with the new troll/elf hp and defeated state
+    - new troll form
+        - user inputs name and submits form
+        - creates a new troll object
+        - add's new troll object to trolls array
+        - "update list display"
+            - clears out the list DOM
+            - for loop thru the trolls
+            - render new troll element for each item
+            - append each el to the container el
+
+### Functions
+
+-   displayTrolls() clears out the list and renders the troll element for each item
+-   renderTroll(troll) creates a check element for the spec troll object
+-   trollClickHandle() takes care of the game logic which trolls are clicked
