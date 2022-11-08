@@ -26,9 +26,28 @@
     <body>
         <header>
             <img class="logo" src="assets/html_css_js.png" alt="logo" />
-            <h1>Web App</h1>
+            <h1>Troll Fighter</h1>
         </header>
 
-        <main></main>
+        <main>
+            <section class="elf-section">
+                <div class="defeated-trolls">
+                    <p>You have defeated <span id="defeated-number">0</span> trolls</p>
+                    <div class="defeated-list"></div>
+                </div>
+                <div class="elf">
+                    <p>Your HP: <span id="elf-hp">3</span></p>
+                    <p id="elf-img">🧝🏻‍♀️</p>
+                </div>
+            </section>
+            <section class="troll-section">
+                <form>
+                    <label for="troll-name">New Troll Name: </label>
+                    <input name="troll-name" id="troll-name" type="text" />
+                    <button type="submit">New Troll <span>🧌</span></button>
+                </form>
+                <div class="trolls"></div>
+            </section>
+        </main>
     </body>
 </html>
