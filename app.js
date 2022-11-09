@@ -50,17 +50,23 @@ function trollClickHandler(troll) {
         elfHP--;
         alert(troll.name + 'attacked you!');
     } else {
-        alert(troll.name + 'tried to attack you but failed');
+        alert(troll.name + ' tried to attack you but failed');
     }
 
-    // if (troll.hp === 0) {
-    //     defeatedCount++;
-    // }
+    if (troll.hp === 0) {
+        defeatedCount++;
+    }
 
-    // if (elfHP === 0) {
-    //     elfImgEl.classList.add('game-over');
-    //     alert('game over');
-    // }
+    if (elfHP === 0) {
+        elfImgEl.classList.add('game-over');
+        alert('game over');
+    }
+
+    const hpEl = document.getElementById(`troll-hp-${troll.id}`);
+    hpEl.textContent = troll.hp < 0 ? 0 : troll.hp;
+
+    const deadEl = document.getElementById(`troll-${troll.id}`);
+    deadEl.textContent = troll.hp > 0 ? '🧌' : '💀';
 }
 
 /* Display Functions */
