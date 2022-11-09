@@ -13,7 +13,25 @@ const trolls = [
     { id: 2, name: 'Bob', hp: 2 },
     { id: 3, name: 'Flob', hp: 1 },
 ];
+let currentId = 4;
+
 /* Events */
+formEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = new FormData(formEl);
+
+    const newTroll = {
+        id: currentId,
+        name: data.get('troll-name'),
+        hp: Math.ceil(Math.random() * 5),
+    };
+    currentId++;
+
+    trolls.push(newTroll);
+
+    displayTrolls();
+});
 
 /* Display Functions */
 function displayTrolls() {
