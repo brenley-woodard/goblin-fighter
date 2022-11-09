@@ -6,6 +6,7 @@ const trollListEl = document.querySelector('.trolls');
 const formEl = document.querySelector('form');
 const elfHPEl = document.querySelector('#elf-hp');
 const defeatedNumEl = document.querySelector('#defeated-number');
+const elfImgEl = document.querySelector('#elf-img');
 
 /* State */
 const trolls = [
@@ -14,6 +15,8 @@ const trolls = [
     { id: 3, name: 'Flob', hp: 1 },
 ];
 let currentId = 4;
+let elfHP = 3;
+let defeatedCount = 0;
 
 /* Events */
 formEl.addEventListener('submit', (e) => {
@@ -33,12 +36,42 @@ formEl.addEventListener('submit', (e) => {
     displayTrolls();
 });
 
+function trollClickHandler(troll) {
+    if (troll.hp <= 0) return;
+
+    if (Math.random() < 0.33) {
+        troll.hp--;
+        alert(troll.name + ' was defeated');
+    } else {
+        alert('You failed at defeating' + troll.name);
+    }
+
+    if (Math.random() < 0.5) {
+        elfHP--;
+        alert(troll.name + 'attacked you!');
+    } else {
+        alert(troll.name + 'tried to attack you but failed');
+    }
+
+    // if (troll.hp === 0) {
+    //     defeatedCount++;
+    // }
+
+    // if (elfHP === 0) {
+    //     elfImgEl.classList.add('game-over');
+    //     alert('game over');
+    // }
+}
+
 /* Display Functions */
 function displayTrolls() {
     trollListEl.textContent = '';
 
     for (let troll of trolls) {
         const trollEl = renderTroll(troll);
+        trollEl.addEventListener('click', () => {
+            trollClickHandler(troll);
+        });
         trollListEl.append(trollEl);
     }
 }
