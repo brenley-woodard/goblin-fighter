@@ -9,13 +9,13 @@ const defeatedNumEl = document.querySelector('#defeated-number');
 const elfImgEl = document.querySelector('#elf-img');
 
 /* State */
-const trolls = [
+let trolls = [
     { id: 1, name: 'Tom', hp: 3 },
     { id: 2, name: 'Bob', hp: 2 },
     { id: 3, name: 'Flob', hp: 1 },
 ];
 let currentId = 4;
-let elfHP = 3;
+let elfHP = 10;
 let defeatedCount = 0;
 
 /* Events */
@@ -38,17 +38,18 @@ formEl.addEventListener('submit', (e) => {
 
 function trollClickHandler(troll) {
     if (troll.hp <= 0) return;
+    if (elfHP === 0) return;
 
     if (Math.random() < 0.33) {
         troll.hp--;
-        alert(troll.name + ' was defeated');
+        alert('You attacked ' + troll.name);
     } else {
-        alert('You failed at defeating' + troll.name);
+        alert('You failed at attacking ' + troll.name);
     }
 
     if (Math.random() < 0.5) {
         elfHP--;
-        alert(troll.name + 'attacked you!');
+        alert(troll.name + ' attacked you');
     } else {
         alert(troll.name + ' tried to attack you but failed');
     }
@@ -61,6 +62,9 @@ function trollClickHandler(troll) {
         elfImgEl.classList.add('game-over');
         alert('game over');
     }
+
+    elfHPEl.textContent = elfHP;
+    defeatedNumEl.textContent = defeatedCount;
 
     const hpEl = document.getElementById(`troll-hp-${troll.id}`);
     hpEl.textContent = troll.hp < 0 ? 0 : troll.hp;

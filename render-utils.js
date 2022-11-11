@@ -10,7 +10,7 @@ export function renderTroll(troll) {
     hpEl.textContent = troll.hp < 0 ? 0 : troll.hp;
     hpEl.id = `troll-hp-${troll.id}`;
 
-    deadEl.id = `troll-id-${troll.id}`;
+    deadEl.id = `troll-${troll.id}`;
     deadEl.textContent = troll.hp > 0 ? '🧌' : '💀';
 
     if (troll.hp < 0) {

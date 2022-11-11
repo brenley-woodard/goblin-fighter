@@ -19,3 +19,12 @@ main {
     display: flex;
     flex-direction: row;
 }
+
+.defeated {
+    opacity: 0.2;
+    cursor: default;
+}
+
+.game-over {
+    transform: rotate(90deg);
+}
